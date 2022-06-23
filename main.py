@@ -1,9 +1,9 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
+import numpy as np
 
-# Configure your home page by setting its title and icon that will be displayed in a browser tab.
-st.set_page_config(page_title = 'Early Diabetes Prediction Web App',
+# Configuring the home page by setting its title and icon that will be displayed in a browser tab.
+st.set_page_config(page_title = 'A Web App to Predict Early Diabetes',
                     page_icon = 'random',
                     layout = 'wide',
                     initial_sidebar_state = 'auto'
@@ -28,21 +28,19 @@ def data_load():
 
 df = data_load()
 
-
-# Create the Page Navigator for 'Home', 'Predict Diabetes' and 'Visualise Decision Tree' web pages in 'main.py'
-# Import the 'predict' 'home', 'plots' Python files
+# Importing the 'predict' 'home', 'plots' Python files
 import predict
 import home
 import plot
 
 # Adding a navigation in the sidebar using radio buttons
-# Create a dictionary.
-pages_dict = {"Home": home, 
-              "Predict Diabetes": predict, 
-              "Visualise Decision Tree": plot}
+# Creating a dictionary.
+multipage_dict = {"Exploratory Data Analysis": home, 
+              "Prediction": predict, 
+              "Data Visualisation": plot}
 
-# Add radio buttons in the sidebar for navigation and call the respective pages based on user selection.
+# Adding radio buttons in the sidebar for navigation and call the respective pages based on user choice.
 st.sidebar.title('Navigation')
-user_choice = st.sidebar.radio("Go to", tuple(pages_dict.keys()))
-selected_page = pages_dict[user_choice]
-selected_page.app(df) 
+choice = st.sidebar.radio("Go to", tuple(pages_dict.keys()))
+opted_page = multipage_dict[choice]
+opted_page.app(df) 
