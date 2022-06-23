@@ -14,7 +14,7 @@ def app(df):
 
     # Add a multiselect in the sidebar with label 'Select the Charts/Plots:'
     # Store the current value of this widget in a variable 'plot_list'.
-    plot_list = st.sidebar.multiselect("Select the Charts/Plots:" ('Correlation Heatmap', 'Line Chart', 'Area Chart', 'Count Plot','Pie Chart', 'Box Plot'))
+    plot_list = st.sidebar.multiselect("Select the Charts/Plots:", ('Correlation Heatmap', 'Line Chart', 'Area Chart', 'Count Plot','Pie Chart', 'Box Plot'))
 
     # Display count plot using seaborn module and 'st.pyplot()' 
     if 'Line Chart' in plot_list:
