@@ -15,7 +15,7 @@ def app(df):
         st.table(df)
 
     st.subheader("Columns Description:")
-    beta_col1, beta_col2, beta_col3 = st.columns(3)
+    beta_col1, beta_col2, beta_col3 = st.beta_columns(3)
 
     # Add a checkbox in the first column. Display the column names of 'df' on the click of checkbox
     with beta_col1:
