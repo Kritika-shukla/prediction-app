@@ -11,7 +11,7 @@ def app(df):
 
     st.header("View Data")
 
-    with st.expander("View Full Dataset"):
+    with st.beta_expander("View Full Dataset"):
         st.table(df)
 
     st.subheader("Columns Description:")
