@@ -14,8 +14,7 @@ def app(df):
 
     # Add a multiselect in the sidebar with label 'Select the Charts/Plots:'
     # Store the current value of this widget in a variable 'plot_list'.
-    plot_list = st.sidebar.multiselect("Select the Charts/Plots:",
-                                   ('Correlation Heatmap', 'Line Chart', 'Area Chart', 'Count Plot','Pie Chart', 'Box Plot'))
+    plot_list = st.sidebar.multiselect("Select the Charts/Plots:" ('Correlation Heatmap', 'Line Chart', 'Area Chart', 'Count Plot','Pie Chart', 'Box Plot'))
 
     # Display count plot using seaborn module and 'st.pyplot()' 
     if 'Line Chart' in plot_list:
@@ -34,8 +33,10 @@ def app(df):
 
     if 'Correlation Heatmap' in plot_list:
         st.subheader("Correlation Heatmap")
-        plt.figure(figsize = (9, 5))
-        sns.heatmap(df.corr(), annot = True,cmap = 'YlGnBu')
+        plt.figure(figsize = (10, 6))
+        hmap = sns.heatmap(df.iloc[:, 1:].corr(), annot = True,cmap = 'YlGnBu') # an object of seaborn axis in 'hmap' variable
+        bottom, top = hmap.get_ylim() # Getting the top and bottom margin limits.
+        hmap.set_ylim(bottom + 0.5, top - 0.5) # Increasing the bottom and decreasing the top margins respectively.
         st.pyplot()
 
     # Display pie plot using matplotlib module and 'st.pyplot()'
@@ -43,7 +44,7 @@ def app(df):
         st.subheader("Pie Chart")
         pie_data = df['Outcome'].value_counts()
         plt.figure(dpi =96)
-        plt.pie(pie_data, labels = pie_data.index, autopct = '%1.2f%%', startangle = 30, explode = [0,0.5])
+        plt.pie(pie_data, labels = pie_data.index, autopct = '%1.2f%%', startangle = 30, explode = [0,0.2])
         st.pyplot()
 
     # Display box plot using matplotlib module and 'st.pyplot()'
@@ -53,8 +54,7 @@ def app(df):
         sns.boxplot(df[column])
         st.pyplot()
 
-    features_list = st.sidebar.multiselect("Select the x-axis values:", 
-                                        ('BMI','Diabetes','Glucose','BP','Age'))
+    features_list = st.sidebar.multiselect("Select the x-axis values:",('BMI','Diabetes','Glucose','BP','Age'))
 
     for feature in features_list:
         st.subheader(f"Scatter plot between {feature} and Outcome")
