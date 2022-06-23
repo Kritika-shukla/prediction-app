@@ -9,7 +9,7 @@ from sklearn import tree
 from sklearn import metrics
 
 @st.cache()
-def d_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age):
+def decision_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age):
     # Split the train and test dataset. 
     feature_columns = list(df.columns)
 
@@ -34,7 +34,7 @@ def d_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age):
 
     return prediction, score
 
-def grid_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age):    
+def gridCV_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age):    
     feature_columns = list(df.columns)
     # Remove the 'Pregnancies', 'Skin_Thickness' columns and the 'target' column from the feature columns
     feature_columns.remove('Pregnancies')
@@ -64,7 +64,7 @@ def grid_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age):
 
     # Create the user defined 'app()' function.
 def app(df):
-    st.markdown("<p style='color:red;font-size:25px'>This app uses <b>Decision Tree Classifier</b> for the Early Prediction of Diabetes.", unsafe_allow_html = True) 
+    st.markdown("<p style='color:Purple;font-size:25px'>This Web app uses <b>Decision Tree Classifier</b> for the Early Prediction of Diabetes.", unsafe_allow_html = True) 
     st.subheader("Select Values:")
 
     glucose = st.slider("Glucose", int(df["Glucose"].min()), int(df["Glucose"].max()))
@@ -75,28 +75,28 @@ def app(df):
     age = st.slider("Age", int(df["Age"].min()), int(df["Age"].max()))
 
 
-    st.subheader("Model Selection")
+    st.subheader("Select the model")
 
     # Add a single select drop down menu with label 'Select the Classifier'
-    predictor = st.selectbox("Select the Decision Tree Classifier",('Decision Tree Classifier', 'GridSearchCV Best Tree Classifier'))
+    predictor = st.selectbox("Select the Classifier",('Decision Tree Classifier', 'GridSearchCV Best Tree Classifier'))
 
     if predictor == 'Decision Tree Classifier':
         if st.button("Predict"):            
-            prediction, score = d_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age)
-            st.subheader("Decision Tree Prediction results:")
+            prediction, score = decision_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age)
+            st.subheader("Prediction results for Decision Tree Classifier:")
             if prediction == 1:
                 st.info("The person either has diabetes or prone to get diabetes")
             else:
                 st.info("The person is free from diabetes")
-            st.write("The accuracy score of this model is", score, "%")
+            st.write(f"The accuracy score of this model is, {score} %")
 
 
     elif predictor == 'GridSearchCV Best Tree Classifier':
         if st.button("Predict"):
-            prediction, score = grid_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age)
-            st.subheader("Optimised Decision Tree Prediction results:")
+            prediction, score = gridCV_tree_pred(df, glucose, bp, insulin, bmi, pedigree, age)
+            st.subheader("Decision Tree Prediction results with GridSearchCV Best Tree Classifier:")
             if prediction == 1:
-                st.info("The person either has diabetes or prone to get diabetes")
+                st.info("This person may have diabetes or is prone to it.")
             else:
-                st.info("The person is free from diabetes")
-            st.write("The best score of this model is", score, "%")
+                st.info("This person is free from diabetes")
+            st.write(f"The accuracy score of this model is, {score} %")
