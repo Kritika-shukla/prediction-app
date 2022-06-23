@@ -41,6 +41,6 @@ multipage_dict = {"Exploratory Data Analysis": home,
 
 # Adding radio buttons in the sidebar for navigation and call the respective pages based on user choice.
 st.sidebar.title('Navigation')
-choice = st.sidebar.radio("Go to", tuple(pages_dict.keys()))
+choice = st.sidebar.radio("Go to", tuple(multipage_dict.keys()))
 opted_page = multipage_dict[choice]
 opted_page.app(df) 
