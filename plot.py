@@ -55,7 +55,7 @@ def app(df):
         sns.boxplot(df[column])
         st.pyplot()
 
-    features_list = st.sidebar.multiselect("Select the x-axis values:",('BMI','Diabetes','Glucose','BP','Age'))
+    features_list = st.sidebar.multiselect("Scatterplot : Select value for x- axis ",('BMI','Glucose','BP','Age'))
 
     for feature in features_list:
         st.subheader(f"Scatter plot between {feature} and Outcome")
