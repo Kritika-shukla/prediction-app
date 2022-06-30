@@ -7,9 +7,9 @@ def app(df):
     st.markdown("""<p style='color:Purple;font-size:20px'>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood sugar.(SRC:WHO)
                 This Web app will help you to predict whether a person has diabetes or is prone to get diabetes in future by analysing the values of several features using the Decision Tree Classifier.""", unsafe_allow_html = True) 
 
-    st.header("View Data")
+    st.header("Dig Deep and discover the data")
 
-    with st.beta_expander("View Full Dataset"):
+    with st.beta_expander("Dive into Full Dataset"):
         st.table(df)
 
     st.subheader("Columns Description:")
@@ -17,7 +17,7 @@ def app(df):
 
     # Adding a checkbox in the first column. Display the column names of 'df' on the click of checkbox
     with col1:
-        if st.checkbox("Show all column names"):
+        if st.checkbox("View all column names"):
             st.table(list(df.columns))
 
     # Adding a checkbox in the second column. Display the column data-types of 'df' on the click of checkbox.
