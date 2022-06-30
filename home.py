@@ -4,7 +4,7 @@ def app(df):
     # Setting the title to the home page contents.
     st.title("A Web App to Predict Early Diabetes")
     # brief description for the web app.
-    st.markdown("""<p style='color: Magenta;font-size:20px'>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood sugar.(SRC:WHO)
+    st.markdown("""<p style='color: Cyan;font-size:20px'>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood sugar.(SRC:WHO)
                 This Web app will help user to predict whether a person has diabetes or is prone to get diabetes in future by analysing diagnostic features using the Machine Learning Classifiers.""", unsafe_allow_html = True) 
 
     st.header("Dig Deep and discover the data")
